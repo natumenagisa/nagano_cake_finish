@@ -1,0 +1,2 @@
+class CraftItem < ApplicationRecord
+end
