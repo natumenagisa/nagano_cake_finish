@@ -1,2 +1,0 @@
-class CraftItem < ApplicationRecord
-end

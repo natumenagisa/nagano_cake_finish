@@ -1,0 +1,60 @@
+<div class="container">
+  <h2 class="my-4">商品編集</h2>
+
+  <div class="row">
+    <div class="col-8 offset-2 mb-5">
+      <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+      <teble>
+        <tr>
+          <div class="from_group">
+            <th><%= f.label :商品画像, class: "from_label" %></th>
+            <th><%= f.file_field :image %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from_group">
+            <th><%= f.label :商品名　, class: "from_group" %></th>
+            <th><%= f.text_field :name, placeholder:"商品名" %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from_group">
+            <th><%= f.label :商品説明, class: "from_group" %></th>
+            <th><%= f.text_area :introduction %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from_group">
+            <th><%= f.label :ジャンル, class: "from_label" %></th>
+            <th><%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt =>"--選択してください--" %></th>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="from-group">
+            <th><%= f.label :税抜価格 %></th>
+            <th><%= f.text_field :price, placeholder:"1000" %>円</th>
+          </div>
+        </tr>
+
+        <div class="from_group">
+          <th><%= f.label :販売ステータス %></th>
+          <td>
+            <%= f.radio_button :is_active, true, checked: true %>
+            <%= f.label :販売中 %>
+            <%= f.radio_button :is_active, false %>
+            <%= f.label :販売停止中 %>
+          </td>
+        </div>
+
+        <div class="form-action">
+          <th><%= f.submit "変更を保存", class: "btn btn-success offset-2" %></th>
+        </div>
+      <% end %>
+      </teble>
+    </div>
+  </div>
+</div>

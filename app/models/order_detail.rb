@@ -1,3 +1,4 @@
 class OrderDetail < ApplicationRecord
-  enum making_status: { cannot_be_manufactured:0, waiting_for_production:1, under_production:2, production_completed:3 }
+  belongs_to :item
+  enum making_status: { "製作不可":0, "製作待ち":1, "制作中":2, "制作完了":3 }
 end

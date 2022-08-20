@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 my-4">
+      <p>
+        <% if @item.image.attached? %>
+          <%= image_tag item.image, size: "180x130" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "180x130" %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="col-6 my-4">
+      <h3><%= @item.name %></h3>
+      <p><%= @item.introduction %></p>
+      <% if @item.is_active == true %>
+        <h4 class="tax">¥<%= @item.with_tax_price %>(税込）</h4>
+        <%= form_with model:@cart_item, url: cart_items_path, method: :post do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, (1..10).to_a, include_blank: "個数選択" %>
+          <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        <% end %>
+      <% else %>
+        <h4>売り切れ</h4>
+      <% end %>
+    </div>
+  </div>
+</div>

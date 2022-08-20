@@ -1,0 +1,22 @@
+<div class="col-md-3 col-sm-6">
+  <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
+    <%= link_to item_path(item) do %>
+      <div class="img-wrap">
+        <% if item.image.attached? %>
+          <%= image_tag item.image, size: "180x130" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "180x130" %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="card-body">
+      <p class="card-text"><%= item.name %></p>
+      <% if item.is_active == true %>
+        <p class="card-text">¥<%= item.price %></p>
+      <% else %>
+        <p class="card-text text-danger">販売停止中</p>
+      <% end %>
+    </div>
+  </div>
+</div>

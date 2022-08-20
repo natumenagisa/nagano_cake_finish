@@ -1,0 +1,17 @@
+<dvi class="container">
+  <div class="row">
+    <div class="col-md-12 mt-2 offset-2">
+      <h3>ジャンル編集</h3>
+    </div>
+  </div>
+
+  <div class="row my-3 offset-1">
+    <div class="col-md-12 mt-4">
+      <%= form_with model: @genre, url:admin_genre_path(@genre), method: :patch, local:true do |f| %>
+        <%= f.label :name, "ジャンル名" %>
+        <%= f.text_field :name, id: "from" %>
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

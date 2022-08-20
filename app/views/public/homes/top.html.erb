@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 mx-auto my-5">
+      <div class="text-center">
+        <p>
+          <span>Welcome Naganocake</span><br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。<br>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>新着商品</h2>
+  <div class="row">
+    <% @items.first(4).each do |item| %>
+      <%= render "item" ,item: item %>
+    <% end %>
+  </div>
+  <div class="all-items-show-button">
+    <%= link_to "全ての商品をみる ＞", items_path %>
+  </div>
+</div>
