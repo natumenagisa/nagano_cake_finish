@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  #管理者用
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-  }
   #顧客用
-  devise_for :customers,skip: [:passwords], controllers: {
-  sessions: 'public/sessions'
+  devise_for :customers, controllers: {
+    sessions:      'public/sessions',
+    passwords:     'public/passwords',
+    registrations: 'public/registrations'
   }
 
   root 'public/homes#top'
@@ -13,12 +11,14 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :items, only: [:index,:show]
-    resource :customers, only: [:show, :edit, :update] do
+    resource :customers, only: [:show] do
       collection do
         get 'unsubscribe'
         patch 'withdraw'
       end
     end
+    get 'customers/info/edit' => 'customers#edit', as: 'edit_info'
+    patch 'customers/info' => 'customers#update', as: 'update_info'
 
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       collection do
@@ -36,7 +36,12 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
-
+  #管理者用
+  devise_for :admins, controllers: {
+    sessions:      'admin/sessions',
+    passwords:     'admin/passwords',
+    registrations: 'admin/registrations'
+  }
 
   namespace :admin do
     root 'homes#top'

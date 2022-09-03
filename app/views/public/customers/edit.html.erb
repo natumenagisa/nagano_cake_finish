@@ -2,7 +2,7 @@
   <h2>会員情報編集</h2>
 
   <div class="row">
-    <%= form_with model: @customer, url: customers_path, method: :patch, local: true do |f| %>
+    <%= form_with model: @customer, url: update_info_path, method: :patch do |f| %>
       <div class="form-group">
         <%= f.label :"氏名" %>
         <%= f.text_field :last_name %>
